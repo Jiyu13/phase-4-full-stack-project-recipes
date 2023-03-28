@@ -30,21 +30,31 @@ def make_recipes():
             # ingredients = recipe_data['strIngredient1'],
             mealThumb = recipe_data['strMealThumb'],
             tags = recipe_data['strTags'],
-            youtube_link = recipe_data['strYouTube'],
+            youtube_link = recipe_data['strYoutube'],
             source = recipe_data['strSource'],
         )
+
+        db.session.add(recipe)
+        db.session.commit()
+
+
+        ingredients = []
+
         for i in range(1, 21):
             name = recipe_data["strIngredient" + str(i)]
             measure = recipe_data['strMeasure' + str(i)]
             if measure and name:
-                Ingredient(
+                ingredient = Ingredient(
                     name=name, 
                     measure=measure,
                     recipe_id=recipe.id)
-        recipes.append(recipe)
+                ingredients.append(ingredient)
 
-    db.session.add_all(recipes)
-    db.session.commit()
+        db.session.add_all(ingredients)
+        db.session.commit()
+
+    # db.session.add_all(recipes)
+    # db.session.commit()
 
 def make_users():
     User.query.delete()
