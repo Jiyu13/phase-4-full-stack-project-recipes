@@ -15,7 +15,7 @@ class Ingredient(db.Model, SerializerMixin):
     measure = db.Column(db.String, nullable=False)
 
     recipe_id = db.Column(db.Integer, db.ForeignKey("recipes.id"))
-
+    serialize_rules = ('-',)
     def __repr__(self):
         return f'''<Ingredient {self.id}: {self.name} - {self.measure}>'''
 
@@ -40,7 +40,8 @@ class Recipe(db.Model, SerializerMixin):
     recipe_users = db.relationship("RecipeUser", backref="recipe")
     users = association_proxy('recipe_users', "user")
 
-    serialize_rules = ("-recipe_users.recipes", "-recipe_users.users")
+    # ADD '-ingredients.recipe'!!
+    serialize_rules = ("-recipe_users.recipe", "-recipe_users.user", '-ingredients.recipe')
 
     def __repr__(self):
         return f"""<Recipe {self.id}; Meal: {self.meal}; Tags: {self.tags}.>"""
@@ -56,7 +57,7 @@ class User(db.Model, SerializerMixin):
     recipe_users = db.relationship("RecipeUser", backref="user")
     recipes = association_proxy("recipe_users", "recipe")
 
-    serialize_rules = ("-recipe_users.recipes", "-recipe_users.users")
+    serialize_rules = ("-recipe_users.recipe", "-recipe_users.user")
 
     # ================= incorporate bcrypt to create a secure password. ====================
     @hybrid_property
@@ -86,6 +87,8 @@ class RecipeUser(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey("recipes.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+
+    serialize_rules = ('-recipe.recipe_users', '-user.recipe_users')
 
     def __repr__(self):
         return f"""<RecipeUser {self.id}>"""

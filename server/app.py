@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 from flask import Flask, make_response, jsonify, request, session
 
-from config import app, db, api, Resource
+from config import app, db, api 
+from flask_restful import Resource
 from models import Recipe, User, Ingredient, RecipeUser
 
 # /recipies
@@ -28,7 +29,7 @@ def recipes():
 # /recipes/id
 @app.route('/recipes/<int:id>', methods=['GET', 'PATCH', 'DELETE'])
 def recipe_by_id(id):
-    recipe = Recipe.query.filter_id(id=id).first()
+    recipe = Recipe.query.filter_by(id=id).first()
     if not recipe:
         return make_response('Recipe not found!', 404)
     elif request.method == 'GET':
