@@ -12,6 +12,19 @@ db = SQLAlchemy(metadata = metadata)
 
 
 # Add models here
+class Ingredient(db.Model, SerializerMixin):
+    __tablename__ = "ingredients"
+    
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    measure = db.Column(db.String, nullable=False)
+
+    recipe_id = db.Column(db.Integer, db.ForeignKey("recipes.id"))
+
+    def __repr__(self):
+        return f'''<Ingredient {self.id}: {self.name} - {self.measure}>'''
+
+
 class Recipe(db.Model, SerializerMixin):
     __tablename__ = "recipes"
 
@@ -19,7 +32,6 @@ class Recipe(db.Model, SerializerMixin):
     meal = db.Column(db.String, nullable=False)
     category = db.Column(db.String)
     instructions = db.Column(db.String, nullable=False)
-    ingredients = db.Column(db.String, nullable=False)
     mealThumb = db.Column(db.String)
     tags = db.Column(db.String)
     youtubu_link = db.Column(db.String)
@@ -27,7 +39,9 @@ class Recipe(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
-    
+    # one to many
+    ingredients = db.relationship("Ingredient", backref=backref('recipe'))
+
     recipe_users = db.relationship("RecipeUser", backref="recipe")
     users = association_proxy('recipe_users', "user")
 

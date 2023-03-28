@@ -2,7 +2,7 @@ from random import choice as rc, randint
 
 from faker import Faker
 from app import app
-from models import db, Recipe, User, RecipeUser 
+from models import db, Recipe, User, RecipeUser, Ingredient
 
 import json
 import requests
@@ -17,7 +17,12 @@ def make_recipes():
         response = requests.get(api)
         data = response.text
         data_json = json.loads(data)
-        recipe_data = data_json['meals'][0]
+        meal_data = data_json['meals']
+
+        if not meal_data:
+            continue
+        recipe_data = meal_data[0]
+
         recipe = Recipe(
             meal = recipe_data['strMeal'],
             category = recipe_data['strCategory'],
@@ -28,6 +33,14 @@ def make_recipes():
             youtube_link = recipe_data['strYouTube'],
             source = recipe_data['strSource'],
         )
+        for i in range(1, 21)
+            name = recipe_data["strIngredient" + str(i)]
+            measure = recipe_data['strMeasure' + str(i)]
+            if measure and name:
+                Ingredient(
+                    name=name, 
+                    measure=measure,
+                    recipe_id=recipe.id)
         recipes.append(recipe)
 
     db.session.add_all(recipes)
