@@ -33,7 +33,7 @@ def make_recipes():
             youtube_link = recipe_data['strYouTube'],
             source = recipe_data['strSource'],
         )
-        for i in range(1, 21)
+        for i in range(1, 21):
             name = recipe_data["strIngredient" + str(i)]
             measure = recipe_data['strMeasure' + str(i)]
             if measure and name:
