@@ -10,7 +10,8 @@ import requests
 fake = Faker()
 def make_recipes():
     Recipe.query.delete()
-
+    Ingredient.query.delete()
+    
     recipes = []
     for i in range(52764, 52795):
         api = f"https://www.themealdb.com/api/json/v1/1/lookup.php?i={i}"
