@@ -1,12 +1,12 @@
 function RecipeCard( {recipe} ) {
 
-    console.log(recipe)
+    // console.log(recipe)
 
     // const [id, meal, category, instructions, mealThumb, tags, youtube_link, source] = recipe
 
     
     return (
-        <li className="recipe_card">
+        <li className="recipe_card" value={recipe.meal}>
             <div>
                 <img
                     src={recipe.mealThumb}

@@ -50,15 +50,32 @@ def recipe_by_id(id):
 
 # POST /recipe_users ???
 
-# class Signup(Resource):
-#     def post(self):
-#         pass
-# api.add_resource(Signup, '/signup', endpoint='signup')
+class Signup(Resource):
+    def post(self):
+        # username = request.get_json()['name']
+        # password = request.get_json['password']
+
+        username = request.get_json().get('name')
+        username = request.get_json().get('name')
+
+        if username and password:
+            new_user = User(name=username)
+
+            new_user.password_hash = password
+            db.session.add(new_user)
+            db.session.commit()
+
+            session["user_id"] = new_user.id
+            return new_user.to_dict(), 201
+        return {'error': '422 Unprocessable Entity'}, 422
+
+api.add_resource(Signup, '/signup', endpoint='signup')
 
 class Login(Resource):
     def post(self):
+        username = request.get_json()['name']
         password = request.get_json()['password']
-        user = User.query.filter_by(name=request.get_json()['name']).first()
+        user = User.query.filter_by(name=username).first()
         if user:
             if user.authenticate(password):
                 session['user_id'] = user.id
@@ -70,7 +87,7 @@ class CheckSession(Resource):
     def get(self):
         # if the user is logged in (if their user_id is in the session object):
         if session.get('user_id'):
-            user = User.query.filter_by(name=request.get_json()['name']).first()
+            user = User.query.filter_by(id=session['user_id']).first()
             return make_response(user.to_dict(), 200)
         return make_response({'message': '401: Not Authorized'}, 401)
     
