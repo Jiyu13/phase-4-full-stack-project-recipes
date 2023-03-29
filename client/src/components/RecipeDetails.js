@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 
+import YoutubeEmbed from "./YoutubeEmbed";
+
 // fetch(`/recipes/${recipeID}`)
 // .then(res => res.json())
 // .then(prevRecipe => {
@@ -10,6 +12,8 @@ import { useParams } from "react-router-dom";
 
 function RecipeDetails() {
 
+    const orders = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "🔟"]
+
     // return dynamic params from current URL that were matched by the <Route path>. 
     let { id } = useParams()
 
@@ -17,7 +21,7 @@ function RecipeDetails() {
     
 
     const [recipe, setRecipe] = useState({})
-    console.log(recipe)
+    // console.log(recipe)
 
     useEffect(() => {
         fetch(`/recipes/${id}`)
@@ -26,29 +30,44 @@ function RecipeDetails() {
     )
     }, [])
 
+
+    const embedId = recipe.youtube_link?.split("v=")[1]
+    const instructionsText = recipe.instructions?.split(/\r?\n/)
+    const tags = recipe.tags?.split(',')
+    // console.log(tags?.map(tag => tag))
+
+    
+    // recipe.tags?.map(tag => <span>🏷️{tag}</span>)
     return (
         <div className="recipe_details">
             <div className="recipe_title">{recipe.meal}</div>
-            <div className="recipe_categorgy_tags">{recipe.category} | {recipe.tags}</div>
-            <img
-                src={recipe.mealThumb}
-                alt={recipe.meal}
-                className="recipe_card_image"
-            />
-            <a herf={recipe.youtube_link}>
-                <img
-                    src='https://www.clipartmax.com/png/middle/258-2580528_visit-our-youtube-channel-youtube-play-button-png.png'
-                    alt={recipe.meal}
-                />
-            </a>
+            <div className="recipe_categorgy_tags">{recipe.category} | {tags?.map(tag => <span> 🏷️{tag}</span> )}</div>
+            
+            <div>
+                <YoutubeEmbed embedId={embedId}/>
+            </div>
 
+            <h2>Ingredients: </h2>
             <ul>
-                {recipe.ingredients?.map(ingre => <li>{ingre.name} - {ingre.measure}</li>)}
+                {recipe.ingredients?.map(ingre => 
+                    
+                    <li>
+                        <label>
+                            <input type="checkbox"/>
+                            {ingre.name} - {ingre.measure}
+                        </label>
+                    </li>
+                )}
             </ul>
             <hr/>
-            <p>
-                {recipe.instructions}
-            </p>
+            <h2>Instructions:</h2>
+            <ul>
+                {instructionsText?.map((Instruction, index) =>
+                    <li>{orders[index]}. {Instruction}</li>
+                )}
+
+            </ul>
+            
         </div>
     )
 }
