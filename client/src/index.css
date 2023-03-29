@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+ul {
+  list-style-type: none;
+}
+
 
 /* class */
 .recipes-container {
@@ -46,4 +50,36 @@ code {
 .recipe_card_image {
   width: 180px;
   height: auto;
+}
+
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.recipe_details {
+  width: 100%;
+  margin: auto;
+  max-width: 800px;
+  
+}
+
+.recipe_title {
+  font-size: 50px;
+  margin: 20px 0;
+}
+
+.recipe_categorgy_tags {
+  font-size: 15px;
+  margin: 20px 0;
 }
