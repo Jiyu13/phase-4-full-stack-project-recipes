@@ -11,3 +11,43 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* class */
+.recipes-container {
+  width: 100%;
+  padding-top: 3%;
+  display: flex;
+  justify-content: center;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.recipe_card {
+  vertical-align: top;
+  width: 180px;
+  height: 250px;
+  /* display: inline-block; */
+  text-align: center;
+  /* background-color: #EEEEEE; */
+  /* border-style: solid; */
+  /* border-width: 3px; */
+  border-radius: 5px;
+  /* border-color: #052109; */
+  list-style: none;
+  flex: 0 0 200px;
+  margin: 1em 20px;
+  /* position: relative; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  opacity: 92%
+}
+
+.recipe_card_image {
+  width: 200px;
+  height: auto;
+}
+
+/* .recipe_card_title {
+
+} */
