@@ -71,7 +71,7 @@ function App() {
 
   function onAddItem(newRecipe) {
     setRecipes([...recipes, newRecipe])
-    console.log(user)
+    // console.log(user)
   }
 
 

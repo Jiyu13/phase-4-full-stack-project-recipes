@@ -45,14 +45,14 @@ function NavBar( {user, onLogout} ) {
             <Link to="/logout">
               <button className="NavBarButton" onClick={handleLogout}>Logout</button>
             </Link>
-            <Link to="/new_recipe">
-              <button className="NavBarButton">New Recipe</button>
-            </Link>
+            
           </>
             : ''
           }
 
-
+          <Link to="/new_recipe">
+            <button className="NavBarButton">New Recipe</button>
+          </Link>
 
       </div>
       

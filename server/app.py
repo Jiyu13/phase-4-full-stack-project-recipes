@@ -24,6 +24,18 @@ def recipes():
             )
             db.session.add(new_recipe)
             db.session.commit()
+            # =============== add new recipe-user to database ==========================
+            new_recipe.users.id = session["user_id"]
+            print(new_recipe.users.id)
+            recipe_user = RecipeUser(
+                user_id=session["user_id"],
+                recipe_id=new_recipe.id
+            )
+            db.session.add(recipe_user)
+            db.session.commit()
+            # ========================================================================
+            
+            db.session.commit()
 
             print(request.get_json()['ingredients'])
             ingredients_lines = request.get_json()['ingredients'][0].split("\n")

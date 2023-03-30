@@ -38,8 +38,8 @@ function NewRecipe({ user, onAddItem }) {
   function handleInput(e) {
     const value = e.target.value
     const name = e.target.name
-    console.log(value)
-    console.log(name)
+    // console.log(value)
+    // console.log(name)
     setRecipeData({...recipeData, [name]:value})
   }
 
@@ -66,6 +66,7 @@ function NewRecipe({ user, onAddItem }) {
     .then(newObj => {
       onAddItem(newObj)
       redirectHome()
+      console.log(newObj.user.id)
     })
   }
     // newRecipe.ingredients = {
