@@ -1,0 +1,25 @@
+.new-recipe-form {
+    text-align: center;
+    margin: 24px 50px 12px;
+}
+
+textarea,
+input[type='text'],
+[type='submit'] {
+    width: 50%;
+    padding: 10px 8px;
+    margin: 8px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* input[type="submit"] {
+	background-color: #8ebf42;
+	color: white;
+	padding: 14px 0;
+	margin: 10px 0;
+	border: none;
+	cursor: grabbing;
+	width: 50%;
+} */

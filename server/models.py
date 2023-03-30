@@ -15,7 +15,7 @@ class Ingredient(db.Model, SerializerMixin):
     measure = db.Column(db.String, nullable=False)
 
     recipe_id = db.Column(db.Integer, db.ForeignKey("recipes.id"))
-    serialize_rules = ('-',)
+    serialize_rules = ('-recipe', )
     def __repr__(self):
         return f'''<Ingredient {self.id}: {self.name} - {self.measure}>'''
 

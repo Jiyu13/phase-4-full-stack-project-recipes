@@ -9,7 +9,7 @@ import { Routes, Route } from "react-router-dom";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 
-import Login from "./Login";
+import NewRecipe from "./NewRecipe";
 
 function handleLogin() {
   console.log("login!")
@@ -63,6 +63,10 @@ function App() {
     setSearchText(input)
   }
 
+  function onAddItem(newRecipe) {
+    setRecipes([...recipes, newRecipe])
+  }
+
 
   return (
     <>
@@ -71,6 +75,11 @@ function App() {
         <Filters handleCategory={handleCategory} />
         <SearchBar searchText={searchText} handleSearch={handleSearch}/>
         <Routes>
+              <Route 
+                exact
+                path="/new_recipe"
+                element={<NewRecipe onAddItem={onAddItem}/>}
+              />
               <Route
                 exact
                 path='/recipes/:id'
