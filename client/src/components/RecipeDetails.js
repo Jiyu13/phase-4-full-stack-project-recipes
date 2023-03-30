@@ -43,9 +43,15 @@ function RecipeDetails() {
             <div className="recipe_title">{recipe.meal}</div>
             <div className="recipe_categorgy_tags">{recipe.category} | {tags?.map(tag => <span> 🏷️{tag}</span> )}</div>
             
-            <div>
-                <YoutubeEmbed embedId={embedId}/>
-            </div>
+            {recipe.youtube_link ? 
+                <div>
+                    <YoutubeEmbed embedId={embedId}/>
+                </div>
+                :
+                <img src={recipe.mealThumb}/>
+            
+            }
+            
 
             <h2>Ingredients: </h2>
             <ul>

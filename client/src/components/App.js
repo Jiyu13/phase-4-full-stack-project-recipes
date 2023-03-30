@@ -63,6 +63,10 @@ function App() {
     setSearchText(input)
   }
 
+  function onAddItem(newRecipe) {
+    setRecipes([...recipes, newRecipe])
+  }
+
 
   return (
     <>
@@ -73,7 +77,7 @@ function App() {
               <Route 
                 exact
                 path="/new_recipe"
-                element={<NewRecipe user={user}/>}
+                element={<NewRecipe onAddItem={onAddItem}/>}
               />
               <Route
                 exact

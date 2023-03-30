@@ -21,11 +21,14 @@ def recipes():
                 tags=request.get_json()['tags'],
                 youtube_link = request.get_json()['youtube_link'],
                 source = request.get_json()['source'],
+                # ingredients= request.get_json()['ingredients']
             )
             db.session.add(new_recipe)
             db.session.commit()
+            response = make_response(new_recipe.to_dict(), 201)
         except ValueError:
-            return make_response({'error': 'Invalid input'}, 400)
+            response = make_response({'error': 'Invalid input'}, 400)
+        return response
 
 # /recipes/id
 @app.route('/recipes/<int:id>', methods=['GET', 'PATCH', 'DELETE'])

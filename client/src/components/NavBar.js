@@ -1,10 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
 function NavBar() {
+  let navigate = useNavigate()
+
+  function redirectHome() {
+      navigate('/')
+  }
+
+  function handleClick() {
+    redirectHome()
+  }
+
   return (
     <nav className="NavBar">
         {/* <Link to='/'>RecipEase</Link> */}
-      <h1 className="logo">RecipEase</h1>
+      <h1 className="logo" onClick={handleClick}>RecipEase</h1>
       <div className='navigate-to'>
         
             <Link to="/signup">

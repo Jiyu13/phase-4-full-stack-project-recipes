@@ -14,7 +14,7 @@ input[type='text'],
     box-sizing: border-box;
 }
 
-input[type="submit"] {
+/* input[type="submit"] {
 	background-color: #8ebf42;
 	color: white;
 	padding: 14px 0;
@@ -22,4 +22,4 @@ input[type="submit"] {
 	border: none;
 	cursor: grabbing;
 	width: 50%;
-}
+} */
