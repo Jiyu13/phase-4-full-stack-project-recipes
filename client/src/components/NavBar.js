@@ -7,11 +7,18 @@ function NavBar() {
         <Link to='/'>RecipEase</Link>
       </div>
       <ul>
-        <li>
+        {/* <li>
           <Link to="/">
             <button className="NavBarButton">Home</button>
           </Link>
+        </li> */}
+
+        <li>
+          <Link to="/signup">
+          <button className="NavBarButton">Sign Up</button>
+          </Link>
         </li>
+
         <li>
           <Link to="/login">
           <button className="NavBarButton">Login</button>

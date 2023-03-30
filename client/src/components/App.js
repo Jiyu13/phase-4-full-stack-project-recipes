@@ -6,11 +6,23 @@ import RecipeList from './RecipeList';
 import RecipeDetails from "./RecipeDetails";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
+import SignupForm from "./SignupForm";
+import LoginForm from "./LoginForm";
+
+import Login from "./Login";
+
+function handleLogin() {
+  console.log("login!")
+}
 
 function App() {
   const [recipes, setRecipes] = useState([])
+
+  const [user, setUser] = useState(null);
+
   const [categoryName, setCategoryName] = useState('')
   const [searchText, setSearchText] = useState('');
+
 
 
   useEffect(() => {
@@ -18,7 +30,7 @@ function App() {
     .then(res => res.json())
     .then(prevRecipes => setRecipes(prevRecipes))
   }, [])
-  // console.log(recipes)
+
 
   // filter by category
   const handleCategory = (e) => {
@@ -51,6 +63,7 @@ function App() {
     setSearchText(input)
   }
 
+
   return (
     <>
       <Router>
@@ -64,6 +77,16 @@ function App() {
               />
               <Route
                 exact
+                path='/signup'
+                element={<SignupForm user={user} setUser={setUser}/>}
+              />
+              <Route
+                exact
+                path='/login'
+                element={<LoginForm onLogin={handleLogin} user={user} setUser={setUser}/>}
+              />
+              <Route
+                exact
                 path="/"
                 element={
                   <>
@@ -74,6 +97,7 @@ function App() {
                     />
                   </>}
               />
+              
         </Routes>
       </Router>
     </>

@@ -56,7 +56,7 @@ class Signup(Resource):
         # password = request.get_json['password']
 
         username = request.get_json().get('name')
-        username = request.get_json().get('name')
+        password = request.get_json().get('password')
 
         if username and password:
             new_user = User(name=username)

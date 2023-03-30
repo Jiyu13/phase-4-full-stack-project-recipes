@@ -4,27 +4,25 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 
-function SignupForm({user, setUser}) {
-
-    // const [newUsers, setNewUsers] = useState([{}])
-    // const [refreshPage, setRefreshPage] = useState(false)
-    // const [isLoading, setIsLoading] = useState(false);
-
-    // useEffect(() => {
-    //     console.log("FETCH! ");
-    //     fetch("/signup")
-    //       .then((res) => res.json())
-    //       .then((data) => {
-    //         setNewUsers(data);
-    //         console.log(data);
-    //       });
-    // }, [refreshPage]);
-
+function LoginForm({onLogin, user, setUser}) {
     let navigate = useNavigate()
 
     function redirectHome() {
         navigate('/')
     }
+    
+    const [refreshPage, setRefreshPage] = useState(false)
+    // const [isLoading, setIsLoading] = useState(false);
+
+    // useEffect(() => {
+    //     console.log("FETCH! ");
+    //     fetch("/login")
+    //       .then((res) => res.json())
+    //       .then((data) => {
+    //         onLogin(data);
+    //         console.log(data);
+    //       });
+    // }, [refreshPage]);
     
     const formSchema = yup.object().shape({
         name: yup.string().required("Must enter usernname"),
@@ -39,29 +37,34 @@ function SignupForm({user, setUser}) {
     
         validationSchema: formSchema,
         onSubmit: (values) => {
-        fetch("/signup", {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-            },
-            body: JSON.stringify(values, null, 2),
-        }).then((res) => {
-            if (res.status === 200) {
-                // setRefreshPage(!refreshPage);
+            fetch("/login", {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values, null, 2),
+            }).then((res) => {
+                if (res.status === 200) {
+                setUser(!refreshPage);
+                onLogin()
+                // redirect to home page ????
                 redirectHome()
-                // res.json().then(user => {
-                //     setUser(user)
-                //     console.log(user)
-                // })
-            }
-        });
+                res.json().then(user => {
+                    setUser(user)
+                    console.log(user)
+                })
+
+                }
+            });
         },
     });
+
+    
 
     return (
         <div>
             <form onSubmit={formik.handleSubmit} style={{ margin: "30px" }}>
-                <h1>Sign Up</h1>
+                <h1>Login</h1>
                 <label htmlFor="name">Username:</label>
                 <br />
                 <input
@@ -77,6 +80,7 @@ function SignupForm({user, setUser}) {
                 <br />
                 <input
                     id="password"
+                    type="password"
                     name="password"
                     onChange={formik.handleChange}
                     value={formik.values.password}
@@ -90,4 +94,4 @@ function SignupForm({user, setUser}) {
     )
 }
 
-export default SignupForm;
+export default LoginForm;
