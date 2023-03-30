@@ -12,7 +12,7 @@ function LoginForm({ user, setUser}) {
     }
 
     const formSchema = yup.object().shape({
-        name: yup.string().required("Must enter usernname"),
+        name: yup.string().required("Must enter username"),
         password: yup.string().required("Must enter a password"),
     });
 
