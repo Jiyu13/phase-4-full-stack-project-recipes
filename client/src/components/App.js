@@ -69,6 +69,7 @@ function App() {
       <Router>
         <NavBar />
         <Filters handleCategory={handleCategory} />
+        <SearchBar searchText={searchText} handleSearch={handleSearch}/>
         <Routes>
               <Route
                 exact
@@ -90,7 +91,7 @@ function App() {
                 path="/"
                 element={
                   <>
-                    <SearchBar searchText={searchText} handleSearch={handleSearch}/>
+                    {/* <SearchBar searchText={searchText} handleSearch={handleSearch}/> */}
                     <RecipeList 
                     recipes={filterCategory()}
                     searchText={searchText}
