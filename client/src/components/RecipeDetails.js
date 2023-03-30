@@ -3,13 +3,6 @@ import { useParams } from "react-router-dom";
 
 import YoutubeEmbed from "./YoutubeEmbed";
 
-// fetch(`/recipes/${recipeID}`)
-// .then(res => res.json())
-// .then(prevRecipe => {
-//   setTargetRecipe(prevRecipe)
-//   setIsCardClick(true)}
-// )
-
 function RecipeDetails() {
 
     const orders = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "🔟"]
@@ -34,10 +27,7 @@ function RecipeDetails() {
     const embedId = recipe.youtube_link?.split("v=")[1]
     const instructionsText = recipe.instructions?.split(/\r?\n/)
     const tags = recipe.tags?.split(',')
-    // console.log(tags?.map(tag => tag))
 
-    
-    // recipe.tags?.map(tag => <span>🏷️{tag}</span>)
     return (
         <div className="recipe_details">
             <div className="recipe_title">{recipe.meal}</div>

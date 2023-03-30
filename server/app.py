@@ -77,8 +77,6 @@ def recipe_by_id(id):
 
 class Signup(Resource):
     def post(self):
-        # username = request.get_json()['name']
-        # password = request.get_json['password']
 
         username = request.get_json().get('name')
         password = request.get_json().get('password')

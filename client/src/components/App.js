@@ -36,7 +36,7 @@ function App() {
       }
     });
   }, []);
-  // console.log(user)
+
 
   // filter by category
   const handleCategory = (e) => {
@@ -71,13 +71,11 @@ function App() {
 
   function onAddItem(newRecipe) {
     setRecipes([...recipes, newRecipe])
-    // console.log(user)
   }
 
 
   function onLogout() {
     setUser(null)
-    // console.log("Logout!" + user.name)
   }
 
   return (
@@ -98,11 +96,7 @@ function App() {
                 path='/recipes/:id'
                 element={<RecipeDetails/>}
               />
-              {/* <Route
-                exact
-                path='/signup'
-                element={<SignupForm user={user} setUser={setUser}/>}
-              /> */}
+          
               <Route
                 exact
                 path='/login'
@@ -114,7 +108,6 @@ function App() {
                 path="/"
                 element={
                   <>
-                    {/* <SearchBar searchText={searchText} handleSearch={handleSearch}/> */}
                     <RecipeList 
                     recipes={filterCategory()}
                     searchText={searchText}

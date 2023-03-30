@@ -36,9 +36,8 @@ function SignupForm({user, setUser}) {
                 redirectHome()
                 res.json().then(user => {
                     setUser(user)
-                    // console.log(user)
                 })
-            }
+            } 
         });
         },
     });

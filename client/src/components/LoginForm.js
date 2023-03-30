@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -31,19 +31,15 @@ function LoginForm({ user, setUser}) {
                 },
                 body: JSON.stringify(values, null, 2),
             }).then((res) => {
-                if (res.status === 200) {
-                // redirect to home page ????
-                redirectHome()
-                res.json().then(user => {
-                    setUser(user)
-                    // console.log(user)
-                })
-
+                //  need to check status code 201, not 200
+                if (res.status === 401) {
+                    window.alert("Account not Found! Please Sign up first.")
+                // redirect to home page 
                 } else {
-                    alert({
-                        title: 'Invalid Authentication',
-                        message: 'Unable to log user in.'
-                    })
+                    redirectHome()
+                    res.json().then(user => {
+                    setUser(user)
+                    })  
                 }
             });
         },

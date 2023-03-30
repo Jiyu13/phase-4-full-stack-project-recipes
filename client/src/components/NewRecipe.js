@@ -1,13 +1,10 @@
-import { useReducer, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
 
 import "./NewRecipe.css";
  
 
 function NewRecipe({ user, onAddItem }) {
-  const [errors, setErrors] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   let navigate = useNavigate()
 
@@ -38,8 +35,7 @@ function NewRecipe({ user, onAddItem }) {
   function handleInput(e) {
     const value = e.target.value
     const name = e.target.name
-    // console.log(value)
-    // console.log(name)
+
     setRecipeData({...recipeData, [name]:value})
   }
 
@@ -66,7 +62,6 @@ function NewRecipe({ user, onAddItem }) {
     .then(newObj => {
       onAddItem(newObj)
       redirectHome()
-      console.log(newObj.user.id)
     })
   }
     // newRecipe.ingredients = {
@@ -81,30 +76,6 @@ function NewRecipe({ user, onAddItem }) {
     // }
   
 
-  
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-  //   fetch("/recipes", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       title,
-  //       instructions,
-  //       minutes_to_complete: minutesToComplete,
-  //     }),
-  //   }).then((r) => {
-  //     setIsLoading(false);
-  //     if (r.ok) {
-  //       history.push("/");
-  //     } else {
-  //       r.json().then((err) => setErrors(err.errors));
-  //     }
-  //   });
-  // }
-
   return (
     <div className="new-recipe-form">
       {user ?
@@ -113,7 +84,6 @@ function NewRecipe({ user, onAddItem }) {
             <form onSubmit={handleSubmit}>
 
                 {/* <label htmlFor="meal">Title</label> */}
-
                 <input
                   type="text"
                   id="meal"

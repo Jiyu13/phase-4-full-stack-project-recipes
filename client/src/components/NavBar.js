@@ -26,7 +26,6 @@ function NavBar( {user, onLogout} ) {
 
   return (
     <nav className="NavBar">
-        {/* <Link to='/'>RecipEase</Link> */}
       <h1 className="logo" onClick={handleClick}>RecipEase</h1>
       <h2>
         {user ?
