@@ -12,17 +12,7 @@ function LoginForm({onLogin, user, setUser}) {
     }
     
     const [refreshPage, setRefreshPage] = useState(false)
-    // const [isLoading, setIsLoading] = useState(false);
 
-    // useEffect(() => {
-    //     console.log("FETCH! ");
-    //     fetch("/login")
-    //       .then((res) => res.json())
-    //       .then((data) => {
-    //         onLogin(data);
-    //         console.log(data);
-    //       });
-    // }, [refreshPage]);
     
     const formSchema = yup.object().shape({
         name: yup.string().required("Must enter usernname"),
@@ -45,7 +35,6 @@ function LoginForm({onLogin, user, setUser}) {
                 body: JSON.stringify(values, null, 2),
             }).then((res) => {
                 if (res.status === 200) {
-                setUser(!refreshPage);
                 onLogin()
                 // redirect to home page ????
                 redirectHome()

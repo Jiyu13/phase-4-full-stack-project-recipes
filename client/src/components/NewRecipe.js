@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 
 import "./NewRecipe.css";
  
 
-function NewRecipe({ onAddItem }) {
+function NewRecipe({ user, onAddItem }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -13,6 +13,7 @@ function NewRecipe({ onAddItem }) {
 
     function redirectHome() {
         navigate('/')
+        console.log("Reciped Added!" + user.name)
     }
 
   
