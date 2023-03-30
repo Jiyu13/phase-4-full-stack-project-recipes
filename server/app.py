@@ -51,10 +51,39 @@ def recipes():
             response = make_response({'error': 'Invalid input'}, 400)
         return response
 
+# ========================= paywall ==================================
+@app.route('/clear')
+def clear_session():
+    session['recipe_views'] = 0
+    return {'message': '200: Successfully cleared session data.'}, 200
+
+# @app.route('/recipes/<int:id>')
+# def show_recipe(id):
+#     session["recipe_views"] = session.get("recipe_views") or 0
+#     session["recipe_views"] += 1
+#     if session["recipe_views"] > 3:
+#         return {"message": "Maximum recipe views limit reached"}, 401
+    
+#     recipe = Recipe.query.filter_by(id=id).first()
+#     # make_response() to send custom headers
+#     return make_response(recipe.to_dict(), 200) 
+# ========================= paywall ==================================
+
 # /recipes/id
 @app.route('/recipes/<int:id>', methods=['GET', 'PATCH', 'DELETE'])
 def recipe_by_id(id):
+
+            
+    session["recipe_views"] = session.get("recipe_views") or 0
+    session["recipe_views"] += 1
+    print(session["recipe_views"])
+    if session["recipe_views"] > 3:
+        
+        return {"message": "Maximum recipe views limit reached"}, 401
+    
+
     recipe = Recipe.query.filter_by(id=id).first()
+    
     if not recipe:
         return make_response('Recipe not found!', 404)
     elif request.method == 'GET':
@@ -111,7 +140,8 @@ class CheckSession(Resource):
         # if the user is logged in (if their user_id is in the session object):
         if session.get('user_id'):
             user = User.query.filter_by(id=session['user_id']).first()
-            return make_response(user.to_dict(), 200)
+            if user:
+                return make_response(user.to_dict(), 200)
         return make_response({'message': '401: Not Authorized'}, 401)
     
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
@@ -133,6 +163,8 @@ class Ingredients(Resource):
         ingredients_dict = [ingre.to_dict() for ingre in ingredients]
         return make_response(ingredients_dict, 200)
 api.add_resource(Ingredients, '/ingredients', endpoint='ingredients')
+
+
 
 
 # Press the green button in the gutter to run the script.
