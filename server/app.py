@@ -18,6 +18,7 @@ def recipes():
                 category = request.get_json()['category'],
                 instructions = request.get_json()['instructions'],
                 mealThumb = request.get_json()['mealThumb'],
+                tags=request.get_json()['tags'],
                 youtube_link = request.get_json()['youtube_link'],
                 source = request.get_json()['source'],
             )
@@ -103,6 +104,13 @@ class Logout(Resource):
         return make_response({'error': '401: Unauthorized'}, 401)
     
 api.add_resource(Logout, '/logout', endpoint='logout')
+
+class Ingredients(Resource):
+    def get(self):
+        ingredients = Ingredient.query.all()
+        ingredients_dict = [ingre.to_dict() for ingre in ingredients]
+        return make_response(ingredients_dict, 200)
+api.add_resource(Ingredients, '/ingredients', endpoint='ingredients')
 
 
 # Press the green button in the gutter to run the script.

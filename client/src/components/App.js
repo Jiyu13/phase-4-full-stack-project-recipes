@@ -9,7 +9,7 @@ import { Routes, Route } from "react-router-dom";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 
-import Login from "./Login";
+import NewRecipe from "./NewRecipe";
 
 function handleLogin() {
   console.log("login!")
@@ -70,6 +70,11 @@ function App() {
         <NavBar />
         <Filters handleCategory={handleCategory} />
         <Routes>
+              <Route 
+                exact
+                path="/new_recipe"
+                element={<NewRecipe user={user}/>}
+              />
               <Route
                 exact
                 path='/recipes/:id'

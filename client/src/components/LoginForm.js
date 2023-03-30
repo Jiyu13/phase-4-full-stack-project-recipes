@@ -88,7 +88,7 @@ function LoginForm({onLogin, user, setUser}) {
                 <p style={{ color: "red" }}> {formik.errors.password}</p>
 
 
-                <button type="submit">Submit</button>
+                <input type="submit">Submit</input>
             </form>
         </div>
     )

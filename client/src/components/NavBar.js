@@ -22,6 +22,10 @@ function NavBar() {
             <Link to="/filter">
             <button className="NavBarButton">Filter</button>
             </Link>
+
+            <Link to="/new_recipe">
+            <button className="NavBarButton">New Recipe</button>
+            </Link>
          
       </div>
       
