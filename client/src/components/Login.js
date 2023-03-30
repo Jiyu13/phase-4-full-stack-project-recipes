@@ -10,18 +10,19 @@ function Login( {onLogin, user, setUser} ) {
     console.log("login!")
   }
 
-  useEffect(() => {
-    // auto-login
-    fetch("/check_session").then((r) => {
-      if (r.ok) {
-        r.json().then((user) => {
-          setUser(user)
-        });
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  // // auto-login
+  // fetch("/check_session").
+  // then((r) => {
+  //   if (r.ok) {
+  //     r.json().then((user) => {
+  //       setUser(user)
+  //     });
+  //   }
+  // });
+  // }, []);
 
-  // if (!user) return <Login onLogin={setUser} />;
+  // // if (!user) return <Login user={user} setUser={setUser} />;
 
   return (
 

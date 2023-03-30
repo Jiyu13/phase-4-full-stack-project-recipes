@@ -67,11 +67,11 @@ function App() {
     console.log(user)
   }
 
-  // if (!user) return <Login onLogin={setUser} />;
 
   function onLogout() {
     setUser(null)
     console.log("Logout!" + user.name)
+    console.log(user)
   }
 
   return (

@@ -107,10 +107,7 @@ function NewRecipe({ user, onAddItem }) {
   return (
     <div className="new-recipe-form">
       <h2>Create Recipe</h2>
-        <form onSubmit={handleSubmit}>
-
-            {/* <label htmlFor="meal">Title</label> */}
-            
+        <form onSubmit={handleSubmit}>            
             <input
               type="text"
               id="meal"
@@ -120,7 +117,6 @@ function NewRecipe({ user, onAddItem }) {
               onChange={handleInput}
             />
 
-            {/* <label htmlFor="category">Category</label> */}
             <input
               type="text"
               id="category"
@@ -130,7 +126,6 @@ function NewRecipe({ user, onAddItem }) {
               onChange={handleInput}
             />
 
-            {/* <label htmlFor="instructions">Instructions</label> */}
             <textarea
               id="instructions"
               rows="10"
@@ -140,7 +135,6 @@ function NewRecipe({ user, onAddItem }) {
               onChange={handleInput}
             />
 
-            {/* <label htmlFor="mealThumb">Tags</label> */}
             <input
               type="text"
               id="mealThumb"
@@ -150,7 +144,6 @@ function NewRecipe({ user, onAddItem }) {
               onChange={handleInput}
             />
 
-            {/* <label htmlFor="tags">Tags</label> */}
             <input
               id="tags"
               type="text"
@@ -160,7 +153,6 @@ function NewRecipe({ user, onAddItem }) {
               onChange={handleInput}
             />
 
-            {/* <label htmlFor="youtube_link">Youtube Link</label> */}
             <input
               id="youtube_link"
               type="text"
@@ -170,7 +162,6 @@ function NewRecipe({ user, onAddItem }) {
               onChange={handleInput}
             />
 
-            {/* <label htmlFor="source">Source</label> */}
             <input
               id="source"
               type="text"
@@ -180,31 +171,20 @@ function NewRecipe({ user, onAddItem }) {
               onChange={handleInput}
             />
 
-            {/* <p>Ingredients</p> */}
-            {/* <label htmlFor="ingredient1">Ingredients</label> */}
-            <input
+            <textarea
               id="ingredients"
               type="text"
               name="ingredients"
               value={recipeData.ingredients}
-              placeholder="Ingredients"
+              placeholder="Ingredients: e.g. 175g @ flour"
               onChange={handleInput}
             />
 
             <button color="primary" type="submit">
-              {/* {isLoading ? "Loading..." : "Submit Recipe"} */}
               Add
             </button>
 
         </form>
-
-        {/* <h1>{title}</h1>
-        <p>
-          <em>Time to Complete: {minutesToComplete} minutes</em>
-          &nbsp;·&nbsp;
-          <cite>By {user.username}</cite>
-        </p>
-        <ReactMarkdown>{instructions}</ReactMarkdown> */}
     </div>
   );
 }

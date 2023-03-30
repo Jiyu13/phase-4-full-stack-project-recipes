@@ -35,14 +35,20 @@ function LoginForm({onLogin, user, setUser}) {
                 body: JSON.stringify(values, null, 2),
             }).then((res) => {
                 if (res.status === 200) {
-                onLogin()
+                // onLogin()
                 // redirect to home page ????
                 redirectHome()
                 res.json().then(user => {
+                    onLogin(user)
                     setUser(user)
                     console.log(user)
                 })
 
+                } else {
+                    alert({
+                        title: 'Invalid Authentication',
+                        message: ''
+                    })
                 }
             });
         },

@@ -21,10 +21,19 @@ def recipes():
                 tags=request.get_json()['tags'],
                 youtube_link = request.get_json()['youtube_link'],
                 source = request.get_json()['source'],
-                # ingredients= request.get_json()['ingredients']
             )
             db.session.add(new_recipe)
             db.session.commit()
+
+            print(request.get_json()['ingredients'])
+            ingredients_lines = request.get_json()['ingredients'][0].split("\n")
+            ingredients = []
+            for ingredient in ingredients_lines:
+                measure, name = ingredient.split("@")
+                ingredients.append(Ingredient(recipe_id=new_recipe.id, name=name.strip(), measure=measure.strip()))
+            db.session.bulk_save_objects(ingredients)
+            db.session.commit()
+            
             response = make_response(new_recipe.to_dict(), 201)
         except ValueError:
             response = make_response({'error': 'Invalid input'}, 400)

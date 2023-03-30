@@ -18,9 +18,12 @@ function NavBar( {user, onLogout} ) {
   function handleLogout() {
     fetch("/logout", {
       method: "DELETE",
-    }).then(() => {
-      onLogout()
-      redirectHome()
+    }).then((r) => {
+      if (r.ok) {
+        onLogout()
+        redirectHome()
+      }
+      
     });
   }
 
@@ -33,15 +36,15 @@ function NavBar( {user, onLogout} ) {
             {/* <Link to="/signup">
             <button className="NavBarButton">Sign Up</button>
             </Link> */}
-         
-            <Link to="/login">
-            <button className="NavBarButton">Login</button>
-            </Link>
-          
-            <Link to="/logout">
-            <button className="NavBarButton" onClick={handleLogout}>Logout</button>
-            </Link>
-          
+            {!user ? 
+              <Link to="/login">
+              <button className="NavBarButton">Login</button>
+              </Link>
+              :
+              <Link to="/logout">
+              <button className="NavBarButton" onClick={handleLogout}>Logout</button>
+              </Link>
+            }
             {/* <Link to="/filter">
             <button className="NavBarButton">Filter</button>
             </Link> */}

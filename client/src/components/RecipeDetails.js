@@ -48,7 +48,7 @@ function RecipeDetails() {
                     <YoutubeEmbed embedId={embedId}/>
                 </div>
                 :
-                <img src={recipe.mealThumb}/>
+                <img src={recipe.mealThumb} alt={recipe.meal} style={{width:"450px", height:"450px"}}/>
             
             }
             
