@@ -6,8 +6,6 @@ import * as yup from "yup";
 
 function SignupForm({user, setUser}) {
 
-    const [refreshPage, setRefreshPage] = useState(false)
-
     let navigate = useNavigate()
 
     function redirectHome() {
@@ -35,7 +33,6 @@ function SignupForm({user, setUser}) {
             body: JSON.stringify(values, null, 2),
         }).then((res) => {
             if (res.status === 201) {
-                setUser(!refreshPage);
                 redirectHome()
                 res.json().then(user => {
                     setUser(user)

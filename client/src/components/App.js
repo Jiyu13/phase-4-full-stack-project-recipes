@@ -8,12 +8,11 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
+import Login from "./Login";
 
 import NewRecipe from "./NewRecipe";
 
-function handleLogin() {
-  console.log("login!")
-}
+
 
 function App() {
   const [recipes, setRecipes] = useState([])
@@ -65,36 +64,45 @@ function App() {
 
   function onAddItem(newRecipe) {
     setRecipes([...recipes, newRecipe])
+    console.log(user)
   }
 
+  // if (!user) return <Login onLogin={setUser} />;
+
+  function onLogout() {
+    setUser(null)
+    console.log("Logout!" + user.name)
+  }
 
   return (
     <>
       <Router>
-        <NavBar />
+        <NavBar user={user} onLogout ={onLogout }/>
         <Filters handleCategory={handleCategory} />
         <SearchBar searchText={searchText} handleSearch={handleSearch}/>
+        {/* <Login/> */}
         <Routes>
               <Route 
                 exact
                 path="/new_recipe"
-                element={<NewRecipe onAddItem={onAddItem}/>}
+                element={<NewRecipe user={user} onAddItem={onAddItem}/>}
               />
               <Route
                 exact
                 path='/recipes/:id'
                 element={<RecipeDetails/>}
               />
-              <Route
+              {/* <Route
                 exact
                 path='/signup'
                 element={<SignupForm user={user} setUser={setUser}/>}
-              />
+              /> */}
               <Route
                 exact
                 path='/login'
-                element={<LoginForm onLogin={handleLogin} user={user} setUser={setUser}/>}
+                element={<Login user={user} setUser={setUser}/>}
               />
+              
               <Route
                 exact
                 path="/"

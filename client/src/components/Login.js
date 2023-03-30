@@ -1,17 +1,34 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 
-function Login( {onLogin} ) {
+function Login( {onLogin, user, setUser} ) {
   const [showLogin, setShowLogin] = useState(true);
 
+  function handleLogin() {
+    console.log("login!")
+  }
+
+  useEffect(() => {
+    // auto-login
+    fetch("/check_session").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => {
+          setUser(user)
+        });
+      }
+    });
+  }, []);
+
+  // if (!user) return <Login onLogin={setUser} />;
 
   return (
 
     <>
       {showLogin ? (
         <>
-          <LoginForm onLogin={onLogin}/>
+          <LoginForm onLogin={handleLogin} user={user} setUser={setUser}/>
           <hr />
 
           <p>Don't have an account? &nbsp;
