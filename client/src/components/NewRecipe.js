@@ -106,85 +106,100 @@ function NewRecipe({ user, onAddItem }) {
 
   return (
     <div className="new-recipe-form">
-      <h2>Create Recipe</h2>
-        <form onSubmit={handleSubmit}>            
-            <input
-              type="text"
-              id="meal"
-              name="meal"
-              placeholder="Recipe title"
-              value={recipeData.meal}
-              onChange={handleInput}
-            />
+      {user ?
+        <>
+          <h2>Create Recipe</h2>
+            <form onSubmit={handleSubmit}>
 
-            <input
-              type="text"
-              id="category"
-              placeholder="Category"
-              value={recipeData.category}
-              name="category"
-              onChange={handleInput}
-            />
+                {/* <label htmlFor="meal">Title</label> */}
 
-            <textarea
-              id="instructions"
-              rows="10"
-              placeholder="Instructions"
-              value={recipeData.instructions}
-              name="instructions"
-              onChange={handleInput}
-            />
+                <input
+                  type="text"
+                  id="meal"
+                  name="meal"
+                  placeholder="Recipe title"
+                  value={recipeData.meal}
+                  onChange={handleInput}
+                />
 
-            <input
-              type="text"
-              id="mealThumb"
-              value={recipeData.mealThumb}
-              name="mealThumb"
-              placeholder="Recipe image url"
-              onChange={handleInput}
-            />
+                {/* <label htmlFor="category">Category</label> */}
+                <input
+                  type="text"
+                  id="category"
+                  placeholder="Category"
+                  value={recipeData.category}
+                  name="category"
+                  onChange={handleInput}
+                />
 
-            <input
-              id="tags"
-              type="text"
-              value={recipeData.tags}
-              name="tags"
-              placeholder="Use comma to seperate each tags"
-              onChange={handleInput}
-            />
+                {/* <label htmlFor="instructions">Instructions</label> */}
+                <textarea
+                  id="instructions"
+                  rows="10"
+                  placeholder="Instructions"
+                  value={recipeData.instructions}
+                  name="instructions"
+                  onChange={handleInput}
+                />
 
-            <input
-              id="youtube_link"
-              type="text"
-              value={recipeData.youtube_link}
-              name="youtube_link"
-              placeholder="Youtube Link (optional)"
-              onChange={handleInput}
-            />
+                {/* <label htmlFor="mealThumb">Tags</label> */}
+                <input
+                  type="text"
+                  id="mealThumb"
+                  value={recipeData.mealThumb}
+                  name="mealThumb"
+                  placeholder="Recipe image url"
+                  onChange={handleInput}
+                />
 
-            <input
-              id="source"
-              type="text"
-              value={recipeData.source}
-              name="source"
-              placeholder="Source (optional)"
-              onChange={handleInput}
-            />
+                {/* <label htmlFor="tags">Tags</label> */}
+                <input
+                  id="tags"
+                  type="text"
+                  value={recipeData.tags}
+                  name="tags"
+                  placeholder="Use comma to seperate each tags"
+                  onChange={handleInput}
+                />
 
-            <textarea
-              id="ingredients"
-              type="text"
-              name="ingredients"
-              value={recipeData.ingredients}
-              placeholder="Ingredients: e.g. 175g @ flour"
-              onChange={handleInput}
-            />
+                {/* <label htmlFor="youtube_link">Youtube Link</label> */}
+                <input
+                  id="youtube_link"
+                  type="text"
+                  value={recipeData.youtube_link}
+                  name="youtube_link"
+                  placeholder="Youtube Link (optional)"
+                  onChange={handleInput}
+                />
 
-            <button color="primary" type="submit">
-              Add
-            </button>
+                {/* <label htmlFor="source">Source</label> */}
+                <input
+                  id="source"
+                  type="text"
+                  value={recipeData.source}
+                  name="source"
+                  placeholder="Source (optional)"
+                  onChange={handleInput}
+                />
 
-        </form>
+                {/* <p>Ingredients</p> */}
+                {/* <label htmlFor="ingredient1">Ingredients</label> */}
+                <input
+                  id="ingredients"
+                  type="text"
+                  name="ingredients"
+                  value={recipeData.ingredients}
+                  placeholder="Ingredients"
+                  onChange={handleInput}
+                />
+
+                <button color="primary" type="submit">
+                  {/* {isLoading ? "Loading..." : "Submit Recipe"} */}
+                  Add
+                </button>
+            </form>
+        </>
+      : 'Log in to Post a Recipe!'}
     </div>
   );
 }

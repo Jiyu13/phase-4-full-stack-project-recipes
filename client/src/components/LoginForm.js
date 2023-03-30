@@ -4,16 +4,13 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 
-function LoginForm({onLogin, user, setUser}) {
+function LoginForm({ user, setUser}) {
     let navigate = useNavigate()
 
     function redirectHome() {
         navigate('/')
     }
-    
-    const [refreshPage, setRefreshPage] = useState(false)
 
-    
     const formSchema = yup.object().shape({
         name: yup.string().required("Must enter usernname"),
         password: yup.string().required("Must enter a password"),
@@ -35,19 +32,17 @@ function LoginForm({onLogin, user, setUser}) {
                 body: JSON.stringify(values, null, 2),
             }).then((res) => {
                 if (res.status === 200) {
-                // onLogin()
                 // redirect to home page ????
                 redirectHome()
                 res.json().then(user => {
-                    onLogin(user)
                     setUser(user)
-                    console.log(user)
+                    // console.log(user)
                 })
 
                 } else {
                     alert({
                         title: 'Invalid Authentication',
-                        message: ''
+                        message: 'Unable to log user in.'
                     })
                 }
             });

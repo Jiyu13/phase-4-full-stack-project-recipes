@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 
-function Login( {onLogin, user, setUser} ) {
+function Login( {user, setUser} ) {
   const [showLogin, setShowLogin] = useState(true);
 
-  function handleLogin() {
-    console.log("login!")
-  }
+  // function handleLogin() {
+  //   console.log("login!")
+  // }
 
   // useEffect(() => {
   // // auto-login
@@ -29,7 +29,7 @@ function Login( {onLogin, user, setUser} ) {
     <>
       {showLogin ? (
         <>
-          <LoginForm onLogin={handleLogin} user={user} setUser={setUser}/>
+          <LoginForm user={user} setUser={setUser}/>
           <hr />
 
           <p>Don't have an account? &nbsp;
@@ -38,7 +38,7 @@ function Login( {onLogin, user, setUser} ) {
         </>
       ) :(
         <>
-          <SignupForm onLogin={onLogin} />
+          <SignupForm user={user} setUser={setUser}/>
           <hr />
           <p>
             Already have an account? &nbsp;

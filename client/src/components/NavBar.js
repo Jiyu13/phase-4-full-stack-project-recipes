@@ -18,12 +18,9 @@ function NavBar( {user, onLogout} ) {
   function handleLogout() {
     fetch("/logout", {
       method: "DELETE",
-    }).then((r) => {
-      if (r.ok) {
-        onLogout()
-        redirectHome()
-      }
-      
+    }).then(() => {
+      onLogout()
+      redirectHome()
     });
   }
 
@@ -31,28 +28,29 @@ function NavBar( {user, onLogout} ) {
     <nav className="NavBar">
         {/* <Link to='/'>RecipEase</Link> */}
       <h1 className="logo" onClick={handleClick}>RecipEase</h1>
+      <h2>
+        {user ?
+        `Welcome, ${user.name}!`
+        : ''}
+      </h2>
       <div className='navigate-to'>
-        
-            {/* <Link to="/signup">
-            <button className="NavBarButton">Sign Up</button>
-            </Link> */}
-            {!user ? 
-              <Link to="/login">
+          {user ? '' :
+            <Link to="/login">
               <button className="NavBarButton">Login</button>
-              </Link>
-              :
-              <Link to="/logout">
-              <button className="NavBarButton" onClick={handleLogout}>Logout</button>
-              </Link>
-            }
-            {/* <Link to="/filter">
-            <button className="NavBarButton">Filter</button>
-            </Link> */}
-
-            <Link to="/new_recipe">
-            <button className="NavBarButton">New Recipe</button>
             </Link>
-         
+          }
+
+          {user ?
+            <Link to="/logout">
+              <button className="NavBarButton" onClick={handleLogout}>Logout</button>
+            </Link>
+            : ''
+          }
+
+          <Link to="/new_recipe">
+            <button className="NavBarButton">New Recipe</button>
+          </Link>
+
       </div>
       
     </nav>
