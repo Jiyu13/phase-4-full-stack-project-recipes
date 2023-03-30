@@ -6,19 +6,7 @@ import * as yup from "yup";
 
 function SignupForm({user, setUser}) {
 
-    // const [newUsers, setNewUsers] = useState([{}])
-    // const [refreshPage, setRefreshPage] = useState(false)
-    // const [isLoading, setIsLoading] = useState(false);
-
-    // useEffect(() => {
-    //     console.log("FETCH! ");
-    //     fetch("/signup")
-    //       .then((res) => res.json())
-    //       .then((data) => {
-    //         setNewUsers(data);
-    //         console.log(data);
-    //       });
-    // }, [refreshPage]);
+    const [refreshPage, setRefreshPage] = useState(false)
 
     let navigate = useNavigate()
 
@@ -27,7 +15,7 @@ function SignupForm({user, setUser}) {
     }
     
     const formSchema = yup.object().shape({
-        name: yup.string().required("Must enter usernname"),
+        name: yup.string().required("Must enter username"),
         password: yup.string().required("Must enter a password"),
     });
 
@@ -46,13 +34,13 @@ function SignupForm({user, setUser}) {
             },
             body: JSON.stringify(values, null, 2),
         }).then((res) => {
-            if (res.status === 200) {
-                // setRefreshPage(!refreshPage);
+            if (res.status === 201) {
+                setUser(!refreshPage);
                 redirectHome()
-                // res.json().then(user => {
-                //     setUser(user)
-                //     console.log(user)
-                // })
+                res.json().then(user => {
+                    setUser(user)
+                    // console.log(user)
+                })
             }
         });
         },
