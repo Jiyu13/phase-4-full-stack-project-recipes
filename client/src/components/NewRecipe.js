@@ -106,13 +106,13 @@ function NewRecipe({ user, onAddItem }) {
 
   return (
     <div className="new-recipe-form">
-      {user ? 
+      {user ?
         <>
           <h2>Create Recipe</h2>
             <form onSubmit={handleSubmit}>
 
                 {/* <label htmlFor="meal">Title</label> */}
-                
+
                 <input
                   type="text"
                   id="meal"

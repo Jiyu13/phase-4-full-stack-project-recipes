@@ -11,17 +11,18 @@ function Login( {user, setUser} ) {
   // }
 
   // useEffect(() => {
-  //   // auto-login
-  //   fetch("/check_session").then((r) => {
-  //     if (r.ok) {
-  //       r.json().then((user) => {
-  //         setUser(user)
-  //       });
-  //     }
-  //   });
+  // // auto-login
+  // fetch("/check_session").
+  // then((r) => {
+  //   if (r.ok) {
+  //     r.json().then((user) => {
+  //       setUser(user)
+  //     });
+  //   }
+  // });
   // }, []);
 
-  // if (!user) return <Login onLogin={setUser} />;
+  // // if (!user) return <Login user={user} setUser={setUser} />;
 
   return (
 

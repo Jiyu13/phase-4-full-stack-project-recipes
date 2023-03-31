@@ -39,6 +39,11 @@ function LoginForm({ user, setUser}) {
                     // console.log(user)
                 })
 
+                } else {
+                    alert({
+                        title: 'Invalid Authentication',
+                        message: 'Unable to log user in.'
+                    })
                 }
             });
         },

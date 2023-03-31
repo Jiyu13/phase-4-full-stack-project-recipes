@@ -26,7 +26,7 @@ function App() {
     .then(prevRecipes => setRecipes(prevRecipes))
   }, [])
 
-  // user remains logged in 
+  // user remains logged in
   useEffect(() => {
     fetch("/check_session").then((r) => {
       if (r.ok) {
@@ -37,7 +37,7 @@ function App() {
     });
   }, []);
   // console.log(user)
-  
+
   // filter by category
   const handleCategory = (e) => {
     // console.log(e.target.value)

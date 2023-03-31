@@ -29,17 +29,17 @@ function NavBar( {user, onLogout} ) {
         {/* <Link to='/'>RecipEase</Link> */}
       <h1 className="logo" onClick={handleClick}>RecipEase</h1>
       <h2>
-        {user ? 
+        {user ?
         `Welcome, ${user.name}!`
         : ''}
       </h2>
       <div className='navigate-to'>
-          {user ? '' : 
+          {user ? '' :
             <Link to="/login">
               <button className="NavBarButton">Login</button>
             </Link>
           }
-          
+
           {user ?
             <Link to="/logout">
               <button className="NavBarButton" onClick={handleLogout}>Logout</button>
@@ -50,7 +50,7 @@ function NavBar( {user, onLogout} ) {
           <Link to="/new_recipe">
             <button className="NavBarButton">New Recipe</button>
           </Link>
-        
+
       </div>
       
     </nav>
