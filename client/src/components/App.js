@@ -6,12 +6,9 @@ import RecipeList from './RecipeList';
 import RecipeDetails from "./RecipeDetails";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
-import SignupForm from "./SignupForm";
-import LoginForm from "./LoginForm";
 import Login from "./Login";
 
 import NewRecipe from "./NewRecipe";
-
 
 
 function App() {
@@ -23,14 +20,24 @@ function App() {
   const [searchText, setSearchText] = useState('');
 
 
-
   useEffect(() => {
     fetch('/recipes')
     .then(res => res.json())
     .then(prevRecipes => setRecipes(prevRecipes))
   }, [])
 
-
+  // user remains logged in 
+  useEffect(() => {
+    fetch("/check_session").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => {
+          setUser(user)
+        });
+      }
+    });
+  }, []);
+  // console.log(user)
+  
   // filter by category
   const handleCategory = (e) => {
     // console.log(e.target.value)
@@ -67,11 +74,10 @@ function App() {
     console.log(user)
   }
 
-  // if (!user) return <Login onLogin={setUser} />;
 
   function onLogout() {
     setUser(null)
-    console.log("Logout!" + user.name)
+    // console.log("Logout!" + user.name)
   }
 
   return (
