@@ -28,28 +28,29 @@ function NavBar( {user, onLogout} ) {
     <nav className="NavBar">
         {/* <Link to='/'>RecipEase</Link> */}
       <h1 className="logo" onClick={handleClick}>RecipEase</h1>
+      <h2>
+        {user ? 
+        `Welcome, ${user.name}!`
+        : 'Please Log In!'}
+      </h2>
       <div className='navigate-to'>
-        
-            {/* <Link to="/signup">
-            <button className="NavBarButton">Sign Up</button>
-            </Link> */}
-         
+          {user ? '' : 
             <Link to="/login">
-            <button className="NavBarButton">Login</button>
+              <button className="NavBarButton">Login</button>
             </Link>
+          }
           
+          {user ?
             <Link to="/logout">
-            <button className="NavBarButton" onClick={handleLogout}>Logout</button>
+              <button className="NavBarButton" onClick={handleLogout}>Logout</button>
             </Link>
-          
-            {/* <Link to="/filter">
-            <button className="NavBarButton">Filter</button>
-            </Link> */}
+            : ''
+          }
 
-            <Link to="/new_recipe">
+          <Link to="/new_recipe">
             <button className="NavBarButton">New Recipe</button>
-            </Link>
-         
+          </Link>
+        
       </div>
       
     </nav>
