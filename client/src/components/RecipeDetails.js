@@ -16,12 +16,24 @@ function RecipeDetails() {
     const [recipe, setRecipe] = useState({})
     // console.log(recipe)
 
+    // useEffect(() => {
+    //     fetch(`/recipes/${id}`)
+    //     .then(res => res.json())
+    //     .then(data => setRecipe(data)     
+    // )
+    // }, [])
+
     useEffect(() => {
-        fetch(`/recipes/${id}`)
-        .then(res => res.json())
-        .then(data => setRecipe(data)     
-    )
-    }, [])
+        fetch(`/recipes/${id}`).then((r) => {
+          if (r.ok) {
+            r.json().then((prevRecipe) =>
+              setRecipe(prevRecipe)
+            );
+          } else {
+            window.alert('Maximum pageview limit reached')
+          }
+        });
+    }, [id]);
 
 
     const embedId = recipe.youtube_link?.split("v=")[1]
