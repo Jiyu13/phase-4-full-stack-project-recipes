@@ -31,7 +31,7 @@ function NavBar( {user, onLogout} ) {
       <h2>
         {user ? 
         `Welcome, ${user.name}!`
-        : 'Please Log In!'}
+        : ''}
       </h2>
       <div className='navigate-to'>
           {user ? '' : 
