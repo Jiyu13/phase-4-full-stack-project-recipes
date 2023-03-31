@@ -184,14 +184,15 @@ function NewRecipe({ user, onAddItem }) {
 
                 {/* <p>Ingredients</p> */}
                 {/* <label htmlFor="ingredient1">Ingredients</label> */}
-                <input
+                <textarea
                   id="ingredients"
                   type="text"
                   name="ingredients"
                   value={recipeData.ingredients}
-                  placeholder="Ingredients"
+                  placeholder="Ingredients: e.g. 175g @ flour"
                   onChange={handleInput}
                 />
+
 
                 <button color="primary" type="submit">
                   {/* {isLoading ? "Loading..." : "Submit Recipe"} */}
